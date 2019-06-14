@@ -1,0 +1,52 @@
+<html>
+    <head>
+     <title>TOP Etch-a-Sketch</title>
+     <link rel="stylesheet" href="site.css"/>
+    </head>
+
+    <body>
+        <div id="main-container">
+            <header>
+                <h2>PROJECT: ETCH-A-SKETCH</h2>
+            </header>
+            <div class="grid" id="main-grid">               
+            </div>
+            <div id="button-bar">
+                <button id="clear-cells">Clear</button>
+            </div>
+        </div>
+    </body>
+
+    <script type="text/javascript">
+       
+       //Handler for mouseover event
+       function changeOnHover(event)
+       {
+           event.target.classList.add("cell-filled");
+       }
+
+       //Handler for onclick event
+       function clearGrid(event)
+       {
+           let cells = document.querySelectorAll(".cell");
+           cells.forEach(element => {
+               element.classList.remove("cell-filled");
+           });
+       }
+
+       //Setup the cells
+       for (let i=0; i<(16*16); i++){
+           let cellElement = document.createElement("span");
+           cellElement.classList.add("cell");
+           cellElement.addEventListener("mouseover", changeOnHover);
+
+           let gridParent = document.getElementById("main-grid");
+           gridParent.appendChild(cellElement);
+       }
+
+       //wire up the Reset/Clear button
+       let clearButton = document.getElementById("clear-cells");
+       clearButton.addEventListener("click", clearGrid );
+
+    </script>
+</html>
