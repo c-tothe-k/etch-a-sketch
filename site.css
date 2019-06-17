@@ -8,16 +8,18 @@ header {
 
 
 #main-container {
-   width: 750px;
+   width: 960px;
    text-align: center;
 }
 
 div.grid {
    display: grid;
-   grid-template-columns: repeat(16, 45px);
-   grid-template-rows: repeat(16, 45px);
-   margin: 5px 5px;
+   width: 100%;
    }
+
+.top-margin-small {
+   margin-top: 5px;
+}
 
 .cell {
       border: 1px solid darkgrey;
@@ -27,6 +29,9 @@ div.grid {
    background-color: black;
 }
 
+input {
+   width: 40px;
+}
 
 /*"Cool Buttons" CCS code found on CodePen: https://codepen.io/FelipeMarcos/pen/tfhEg*/
 button {

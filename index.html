@@ -9,11 +9,16 @@
             <header>
                 <h2>PROJECT: ETCH-A-SKETCH</h2>
             </header>
-            <div class="grid" id="main-grid">               
-            </div>
             <div id="button-bar">
-                <button id="clear-cells">Clear</button>
+                    <label for="cells-count">Grid X by Y size:</label>
+                    <input name="cells-count" id="cells-count" value="16"/>
+                    <div class="top-margin-small">
+                       <button id="clear-cells">Clear and Resize</button>     
+                    </div>               
+             </div>
+            <div class="grid top-margin-small" id="main-grid">               
             </div>
+           
         </div>
     </body>
 
@@ -32,21 +37,46 @@
            cells.forEach(element => {
                element.classList.remove("cell-filled");
            });
+
+           setGridRowCol();
+       }
+       
+       //set the grid-template-columns and grid-template-rows
+       //CCS properties based on the value entered into the input
+       function setGridRowCol()
+       {
+           let gridSize = document.getElementById("cells-count").value;
+           let mainGridElement = document.querySelector(".grid");
+           let cellSize = Math.floor(960/gridSize);
+           mainGridElement.setAttribute("style",`grid-template-columns: repeat(${gridSize},${cellSize}px); grid-template-rows: repeat(${gridSize},${cellSize}px)`);
+           
+           //remove any cells created by a previous grid
+           let cellsToClear = document.querySelector(".cell");
+           if (cellsToClear != null) {
+                cellsToClear.forEach( cellElement => {
+                        cellElement.remove();
+                });
+           }
+           
+            //Setup new cells
+           for (let i=0; i<(gridSize*gridSize); i++){
+                let cellElement = document.createElement("span");
+                cellElement.classList.add("cell");
+                cellElement.addEventListener("mouseover", changeOnHover);
+
+                let gridParent = document.getElementById("main-grid");
+                gridParent.appendChild(cellElement);
+            }
+
        }
 
-       //Setup the cells
-       for (let i=0; i<(16*16); i++){
-           let cellElement = document.createElement("span");
-           cellElement.classList.add("cell");
-           cellElement.addEventListener("mouseover", changeOnHover);
-
-           let gridParent = document.getElementById("main-grid");
-           gridParent.appendChild(cellElement);
-       }
-
+      
        //wire up the Reset/Clear button
        let clearButton = document.getElementById("clear-cells");
        clearButton.addEventListener("click", clearGrid );
 
+       //Set the initial 16x16 grid
+       setGridRowCol();
+       
     </script>
 </html>
