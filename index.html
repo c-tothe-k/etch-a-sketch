@@ -51,9 +51,9 @@
            mainGridElement.setAttribute("style",`grid-template-columns: repeat(${gridSize},${cellSize}px); grid-template-rows: repeat(${gridSize},${cellSize}px)`);
            
            //remove any cells created by a previous grid
-           let cellsToClear = document.querySelector(".cell");
+           let cellsToClear = document.querySelectorAll(".cell");
            if (cellsToClear != null) {
-                cellsToClear.forEach( cellElement => {
+                cellsToClear.forEach( (cellElement) => {
                         cellElement.remove();
                 });
            }
