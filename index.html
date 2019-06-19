@@ -41,17 +41,7 @@
            }
        }
 
-       //Handler for onclick event
-       function clearGrid(event)
-       {
-           let cells = document.querySelectorAll(".cell");
-           cells.forEach(element => {
-               element.classList.remove("cell-filled");
-           });
-
-           setGridRowCol();
-       }
-       
+    
        //set the grid-template-columns and grid-template-rows
        //CCS properties based on the value entered into the input
        function setGridRowCol()
@@ -84,7 +74,7 @@
       
        //wire up the Reset/Clear button
        let clearButton = document.getElementById("clear-cells");
-       clearButton.addEventListener("click", clearGrid );
+       clearButton.addEventListener("click", setGridRowCol );
 
        //Set the initial 16x16 grid
        setGridRowCol();
