@@ -11,10 +11,14 @@
             </header>
             <div id="button-bar">
                     <label for="cells-count">Grid X by Y size:</label>
-                    <input name="cells-count" id="cells-count" value="16"/>
+                    <input type="text" name="cells-count" id="cells-count" value="16"/>
                     <div class="top-margin-small">
                        <button id="clear-cells">Clear and Resize</button>     
-                    </div>               
+                    </div>
+                    <div class="top-margin-small">
+                        <label for="randomize-colors">Randomize cell colors</label>
+                        <input name="randomize-colors" id="randomize-colors" type="checkbox" />   
+                    </div>           
              </div>
             <div class="grid top-margin-small" id="main-grid">               
             </div>
@@ -28,6 +32,13 @@
        function changeOnHover(event)
        {
            event.target.classList.add("cell-filled");
+           let setRandomColor = document.getElementById("randomize-colors").checked;
+           if ( setRandomColor == true){
+               let r = Math.floor(Math.random() * 256);
+               let g = Math.floor(Math.random() * 256);
+               let b = Math.floor(Math.random() * 256);
+               event.target.setAttribute("style",`background-color: rgb(${r}, ${g}, ${b})`);
+           }
        }
 
        //Handler for onclick event
